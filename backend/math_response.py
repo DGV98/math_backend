@@ -1,9 +1,11 @@
-import openai 
-import os 
+import openai
+import os
 from collections import deque
 import re
 import random
+from dotenv import load_dotenv
 
+load_dotenv()
 
 if not os.environ.get("OPENAI_API_KEY"):
     raise RuntimeError("API_KEY not set")
@@ -48,29 +50,9 @@ class Problem():
 
     def __repr__(self) -> str:
         return f"Questions: {self.q}"
-        
-        
-        
+
+
 def generate_prompt(category: str, difficulty: str) -> str:
     if not category or not difficulty:
         raise ValueError("No category or difficulty provided.")
     return f"Act like you are a math professor tutoring one of your students. Can you generate a list of 5 {category.lower()} problems that are of {difficulty.lower()} difficulty. Please format your problems in a way that can be interpreted by Wolfram Alpha for answers."
-
-def change_ints(problem):
-    nums = re.findall("\d+", problem)
-    mappings = {}
-    for num in nums:
-        random_num = str(random.randrange(1, 9))
-        mappings[num] = random_num
-    # print(mappings)
-    return re.sub("\d+", lambda x: mappings[x.group(0)], problem)
-
-
-
-if __name__ == "__main__":
-    
-    print(change_ints("Find the indefinite integral of x^3 + 2x^2 + 3x + 45"))
-
-
-    
-
