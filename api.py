@@ -14,5 +14,5 @@ def define_problem():
     return jsonify(clean_response(get_response(generate_prompt(category, difficulty))))
 
 
-# if __name__ == "__main__":
-#     app.run(debug=True)
+if __name__ == "__main__":
+    app.run(debug=True)
