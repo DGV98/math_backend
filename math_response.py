@@ -1,13 +1,6 @@
 import openai
 import re
 
-# load_dotenv()
-
-# if not os.environ.get("OPENAI_API_KEY"):
-#     raise RuntimeError("API_KEY not set")
-# else:
-#     openai.api_key = os.environ.get("OPENAI_API_KEY")
-
 
 def get_response(prompt) -> str:
     response = openai.ChatCompletion.create(
