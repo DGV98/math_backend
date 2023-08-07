@@ -7,10 +7,10 @@ app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}})
 
 
-@app.route("/api/generate", methods=["POST"])
+@app.route("/api/generate", methods=["GET"])
 def define_problem():
-    category = request.json["category"]
-    difficulty = request.json["difficulty"]
+    category = request.args["category"]
+    difficulty = request.args["difficulty"]
     return jsonify(clean_response(get_response(generate_prompt(category, difficulty))))
 
 
